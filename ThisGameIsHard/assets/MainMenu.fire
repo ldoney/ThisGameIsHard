@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.8303083388742251,
-      "y": 0.8303083388742251,
+      "x": 0.5953125,
+      "y": 0.5953125,
       "z": 1
     },
     "_quat": {
@@ -124,6 +124,9 @@
       },
       {
         "__id__": 38
+      },
+      {
+        "__id__": 39
       }
     ],
     "_prefab": null,
@@ -1669,5 +1672,23 @@
     },
     "_enabled": true,
     "_id": "daUUPZ2EhIT49ahen1MTSE"
+  },
+  {
+    "__type__": "cc.AudioSource",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "_clip": {
+      "__uuid__": "4e001711-7528-4eeb-9606-aac8d36e940d"
+    },
+    "_volume": 1,
+    "_mute": false,
+    "_loop": true,
+    "playOnLoad": true,
+    "preload": true,
+    "_id": "2cam+MfEpIQZDbCnSij3CM"
   }
 ]
