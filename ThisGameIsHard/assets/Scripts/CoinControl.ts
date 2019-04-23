@@ -1,3 +1,5 @@
+import { Helpers } from "./Objects/Helpers";
+
 const {ccclass, property} = cc._decorator;
 
 @ccclass
@@ -5,10 +7,16 @@ export default class CoinControl extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
     @property
-    padX:number = 50
+    padLeft:number = 120
 
     @property
-    padY:number = 50
+    padRight:number = 120
+
+    @property
+    padTop:number = 120
+
+    @property
+    padBottom:number = 120
 
     @property
     maxTime:number = 5
@@ -25,34 +33,44 @@ export default class CoinControl extends cc.Component {
     }
     onCollisionStay(other)
     {
-        if(other.node.name == "Ball")
+        if(this.canCollect)
         {
-            this.node.parent.getComponent("Game").addCoin(1);
-            this.spawnCoin();
+            if(other.node.name == "Ball")
+            {
+                this.node.parent.getComponent("Game").addCoin(1);
+                this.spawnCoin();
+            }
         }
     }
     onCollisionEnter(other)
     {
         this.onCollisionStay(other);
     }
-
+    canCollect:boolean = true;
     spawnCoin() {
         var canvas = this.node.getParent();
         var width = (canvas.width/2);
         var height = (canvas.height/2);
-        if(this.node.getPosition() != null)
+        cc.log(Helpers.getDistance(this.node, this.node.parent.getChildByName("Ball")) + " / " + this.node.parent.getChildByName("Ball").width * 1.5);
+        this.node.opacity = 0;
+        this.canCollect = false;
+        do
         {
-            var faded = cc.instantiate(this.node);
-            faded.removeComponent(CoinControl);
-            this.node.parent.addChild(faded);
+            cc.log(Helpers.getDistance(this.node, this.node.parent.getChildByName("Ball")) + " / " + this.node.parent.getChildByName("Ball").width * 1.5);
+            if(this.node.getPosition() != null)
+            {
+                var faded = cc.instantiate(this.node);
+                faded.removeComponent(CoinControl);
+                this.node.parent.addChild(faded);
+                faded.runAction(cc.fadeOut(0.125));
+            }
+            this.node.setPosition(Helpers.getRndInt(-(width) + this.padLeft, (width) - this.padRight), 
+                                  Helpers.getRndInt(-(height) + this.padBottom, (height) - this.padTop));
 
-            faded.runAction(cc.fadeOut(0.125));
-        }
-        this.node.setPosition(
-                            (Math.random() * (width + this.padX)) - (width - this.padX), 
-                            (Math.random() * (height + this.padY)) - (height - this.padY));
-
-        this.currentTime = this.maxTime;
+            this.currentTime = this.maxTime;
+        }while((Helpers.getDistance(this.node, this.node.parent.getChildByName("Ball")) < this.node.parent.getChildByName("Ball").width * 3))
+        this.node.opacity = 255;
+        this.canCollect = true;
     }
     update (dt: number) {
         if(this.node.parent.getComponent("Game").inSession)

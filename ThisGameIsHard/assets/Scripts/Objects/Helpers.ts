@@ -130,7 +130,6 @@ export class Helpers {
     static randomizeScheme()
     {
         this.scheme.loadRandomScheme();
-        
     }
     static setScheme(val)
     {
@@ -161,6 +160,15 @@ export class Helpers {
                 cc.director.loadScene(scene);
             })
         )); 
-        
     }
+    static getDistance(n1:cc.Node, n2:cc.Node)
+    {
+        var distX = Math.abs(n2.getPosition().x - n1.getPosition().x);
+        var distY = Math.abs(n2.getPosition().y - n1.getPosition().y);
+        var distZ = Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));
+        return distZ;
+    }
+    static getRndInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) ) + min;
+      }
 }

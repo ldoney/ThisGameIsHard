@@ -3,8 +3,9 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class LootBoxes extends cc.Component {
-
+    count:number = 0;
     start () {
+        Helpers.user.LootBoxes++;
         this.node.getChildByName("Back").on('touchstart', function() { Helpers.switchScenes("PaletteEdit",this.node)}, this);    
         this.node.getChildByName("Count").getComponent(cc.Label).string = "x" + Helpers.user.LootBoxes;
         var Box = this.node.getChildByName("Box");
@@ -44,30 +45,17 @@ export default class LootBoxes extends cc.Component {
         var amount = Math.floor((Math.random()* 10) + 1);
         var Box = this.node.getChildByName("Box");
         var callback = cc.callFunc(function(){this.unlock(list[index].ID)}, this);
-        Box.stopAllActions();
-        Box.runAction(cc.sequence(cc.repeat( cc.sequence(
-            cc.moveBy(0.01, cc.v2(amount, 0)),
-            cc.moveBy(0.01, cc.v2(0, -amount)),
-            cc.moveBy(0.01, cc.v2(0, amount)),
-            cc.moveBy(0.01, cc.v2(-amount, 0)),
-            cc.delayTime(0.1),
-            cc.moveBy(0.01, cc.v2(0, -amount)),
-            cc.moveBy(0.01, cc.v2(amount, 0)),
-            cc.moveBy(0.01, cc.v2(0, amount)),
-            cc.moveBy(0.01, cc.v2(-amount, 0)),
-            cc.delayTime(0.1),
-            cc.moveBy(0.01, cc.v2(amount, 0)),
-            cc.moveBy(0.01, cc.v2(0, -amount)),
-            cc.moveBy(0.01, cc.v2(-amount, 0)),
-            cc.moveBy(0.01, cc.v2(0, amount)),
-            cc.delayTime(0.1),
-            cc.moveBy(0.01, cc.v2(0, -amount)),
-            cc.moveBy(0.01, cc.v2(amount, 0)),
-            cc.moveBy(0.01, cc.v2(0, amount)),
-            cc.moveBy(0.01, cc.v2(-amount, 0)),
-            cc.delayTime(0.1),
-            cc.delayTime(0.5)),
-            3), callback));
+        Box.setPosition(0,0);
+        Box.runAction(cc.sequence(cc.moveBy(0.01, cc.v2(amount, 0)),
+        cc.moveBy(0.01, cc.v2(0, -amount)),
+        cc.moveBy(0.01, cc.v2(0, amount)),
+        cc.moveBy(0.01, cc.v2(-amount, 0))));
+        this.count++;
+        if(this.count >= 5)
+        {
+            this.count = 0;
+            this.node.runAction(callback);
+        }
     }
     createItemDisp(scheme)
     {
