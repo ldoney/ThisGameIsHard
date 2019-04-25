@@ -34,7 +34,8 @@ export default class Game extends cc.Component {
     start () {
         this.inSession = true;
         this.sessionTimer = 0.00;
-        this.node.getChildByName("Menu").on('touchstart', function() {Helpers.returnToMenu(this.node)}, this);
+        this.node.getChildByName("Menu").on('touchstart', function() {
+            if(!this.inSession){Helpers.returnToMenu(this.node)}}, this);
         this.node.getChildByName("Pause").on('touchstart', this.onPauseTouchEvent, this);
         this.getBallRepAsSF(this.node.getChildByName("Ball").getComponent(cc.Sprite), Helpers.skins.CurBall);
         this.node.getChildByName("CoinCnt").getComponent(cc.Label).string = "$"+Helpers.user.Coins;
@@ -77,7 +78,7 @@ export default class Game extends cc.Component {
         this.node.getChildByName("CoinCntLBL").runAction(cc.fadeIn(0.125));
         this.node.getChildByName("HighScoreLBL").runAction(cc.fadeIn(0.125));
         this.node.getChildByName("PostTimerLBL").runAction(cc.fadeIn(0.125));
-
+        this.node.getChildByName("Stopwatch").runAction(cc.fadeOut(0.125));
     }
     fade(o)
     {
@@ -111,7 +112,6 @@ export default class Game extends cc.Component {
         this.node.getChildByName("HighScoreLBL").runAction(cc.fadeOut(0.125));
         this.node.getChildByName("PostTimerLBL").runAction(cc.fadeOut(0.125));
         this.node.getChildByName("CoinCntRound").runAction(cc.fadeOut(0.125));
-
     }
 
     freeze()
@@ -154,6 +154,7 @@ export default class Game extends cc.Component {
         this.node.getChildByName("HighScoreLBL").runAction(cc.fadeIn(0.125));
         this.node.getChildByName("PostTimerLBL").runAction(cc.fadeIn(0.125));
         this.node.getChildByName("CoinCntRound").runAction(cc.fadeIn(0.125));
+        this.node.getChildByName("Stopwatch").opacity = 0;
     }
     restart()
     {
@@ -168,6 +169,7 @@ export default class Game extends cc.Component {
             this.node.getChildByName("Timer").getComponent(cc.Label).string = "" + this.sessionTimer.toFixed(1);
             
             this.node.getChildByName("PostTimer").getComponent(cc.Label).string = "" + this.sessionTimer.toFixed(2);
+            
             if(this.sessionTimer > Helpers.user.HighScore)
             {
                 Helpers.user.HighScore = this.sessionTimer;                

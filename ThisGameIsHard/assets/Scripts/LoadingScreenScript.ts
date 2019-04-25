@@ -8,6 +8,8 @@ export default class LoadingScreenScript extends cc.Component {
     onLoad () {
         this.node.getChildByName("Loading").runAction(cc.repeatForever(cc.rotateBy(1,360)));
         this.node.getChildByName("LogoWhite").runAction(cc.fadeIn(2));
+        Helpers.checkForDBUpdates();
+        
         Helpers.setUpAll();
         cc.director.preloadScene("MainMenu");
         this.node.getChildByName("Loading").runAction(cc.sequence(cc.delayTime(4), cc.fadeOut(1)));

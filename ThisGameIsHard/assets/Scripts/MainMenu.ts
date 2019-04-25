@@ -6,11 +6,8 @@ const {ccclass, property} = cc._decorator;
 export default class MainMenu extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
     onLoad () {
-        Helpers.checkForDBUpdates();
-        
-        Helpers.setUpAll();
+        this.change();
         Helpers.scheme.loadColors(this.node);
-        
         this.node.getChildByName("Stats").on('touchstart', function() { Helpers.switchScenes("Stats",this.node)}, this)
         this.node.getChildByName("Settings").on('touchstart', function() { Helpers.switchScenes("Settings",this.node)}, this)
         this.node.getChildByName("Customize").on('touchstart', function() { Helpers.switchScenes("Shop",this.node)}, this)

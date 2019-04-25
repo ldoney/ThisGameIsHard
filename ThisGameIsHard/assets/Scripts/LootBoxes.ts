@@ -5,12 +5,21 @@ const {ccclass, property} = cc._decorator;
 export default class LootBoxes extends cc.Component {
     count:number = 0;
     start () {
-        Helpers.user.LootBoxes++;
         this.node.getChildByName("Back").on('touchstart', function() { Helpers.switchScenes("PaletteEdit",this.node)}, this);    
         this.node.getChildByName("Count").getComponent(cc.Label).string = "x" + Helpers.user.LootBoxes;
-        var Box = this.node.getChildByName("Box");
-        Box.on('touchstart', this.choose, this)
-        this.shake();
+        var list = Helpers.schemeList.List.filter(e => e.unl == false);
+        if(list.length <= 0)
+        {
+            this.node.getChildByName("Box").runAction(cc.fadeOut(1));
+            this.node.getChildByName("ErrMsg").getComponent(cc.Label).string = "You have all\nthe schemes!";
+            this.node.getChildByName("ErrMsg").runAction(cc.fadeIn(1));
+            this.node.getChildByName("Count").opacity = 0;
+        }else{
+            var Box = this.node.getChildByName("Box");
+            Box.on('touchstart', this.choose, this)
+            this.shake();
+        }
+        this.count = 0;
     }
     shake()
     {
@@ -38,13 +47,30 @@ export default class LootBoxes extends cc.Component {
         this.createItemDisp(elem);
         Helpers.updateSchemes();
     }
+    updateCount()
+    {
+        this.node.getChildByName("Count").getComponent(cc.Label).string = "x" + Helpers.user.LootBoxes;
+        var list = Helpers.schemeList.List.filter(e => e.unl == false);
+        if(Helpers.user.LootBoxes < 1)
+        {
+            this.node.getChildByName("Box").runAction(cc.fadeOut(1));
+            this.node.getChildByName("ErrMsg").getComponent(cc.Label).string = "You ran out :(";
+            this.node.getChildByName("ErrMsg").runAction(cc.fadeIn(1));
+        }else if(list.length <= 0)
+        {
+            this.node.getChildByName("Box").runAction(cc.fadeOut(1));
+            this.node.getChildByName("ErrMsg").getComponent(cc.Label).string = "You have all the schemes!";
+            this.node.getChildByName("ErrMsg").runAction(cc.fadeIn(1));
+        }
+    }
     choose()
     {
         var list = Helpers.schemeList.List.filter(e => e.unl == false);
         var index = (Math.floor(Math.random() * list.length));
+        if(list.length > 0)
+        {
         var amount = Math.floor((Math.random()* 10) + 1);
         var Box = this.node.getChildByName("Box");
-        var callback = cc.callFunc(function(){this.unlock(list[index].ID)}, this);
         Box.setPosition(0,0);
         Box.runAction(cc.sequence(cc.moveBy(0.01, cc.v2(amount, 0)),
         cc.moveBy(0.01, cc.v2(0, -amount)),
@@ -54,8 +80,10 @@ export default class LootBoxes extends cc.Component {
         if(this.count >= 5)
         {
             this.count = 0;
-            this.node.runAction(callback);
+            this.unlock(list[index].ID);
+            this.updateCount();
         }
+    }
     }
     createItemDisp(scheme)
     {

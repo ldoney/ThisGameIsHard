@@ -30,6 +30,7 @@ export default class PaletteController extends cc.Component {
             lblnode.addComponent(cc.Label);
             var lbl = lblnode.getComponent(cc.Label);
             lbl.string = scheme.Name;
+            lbl.font  = this.node.getChildByName("Title_1").getComponent(cc.Label).font;
 
             lblnode.scaleX = 0.87;
             lblnode.color = Helpers.fromHex(scheme.Primary);

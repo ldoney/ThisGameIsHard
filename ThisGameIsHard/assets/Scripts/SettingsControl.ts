@@ -15,5 +15,8 @@ export default class SettingsControl extends cc.Component {
     reset()
     {
         Context.resetCharacter();
+        Helpers.checkForDBUpdates();
+        
+        Helpers.setUpAll();
     }
 }

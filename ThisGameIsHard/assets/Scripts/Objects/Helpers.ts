@@ -29,8 +29,8 @@ export class Helpers {
         this.setUpSkinDB();
         this.setUpSkins();
         this.setUpUsers();
-        this.setUpSchemes();
         this.scheme.checkForSchemeUpdates();
+        this.setUpSchemes();
     }   
     static setUpLastScheme()
     {
