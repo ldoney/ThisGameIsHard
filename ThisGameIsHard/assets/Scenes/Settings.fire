@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.596875,
-      "y": 0.596875,
+      "x": 0.5953125,
+      "y": 0.5953125,
       "z": 1
     },
     "_quat": {
@@ -870,7 +870,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 397.97,
+      "width": 318.38,
       "height": 40
     },
     "_anchorPoint": {
@@ -915,7 +915,7 @@
     "_useOriginalSize": false,
     "_string": "These settings are challenging.",
     "_N$string": "These settings are challenging.",
-    "_fontSize": 24.999999999999936,
+    "_fontSize": 19.999999999999872,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {

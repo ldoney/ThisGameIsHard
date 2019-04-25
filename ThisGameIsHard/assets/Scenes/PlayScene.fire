@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.596875,
-      "y": 0.596875,
+      "x": 0.5,
+      "y": 0.5,
       "z": 1
     },
     "_quat": {
@@ -458,7 +458,7 @@
       "__id__": 7
     },
     "_enabled": true,
-    "Multiplier": 50,
+    "Multiplier": 60,
     "RotateMult": 1,
     "_id": "ccf9eWwxdNz7so+mCFj7MR"
   },
