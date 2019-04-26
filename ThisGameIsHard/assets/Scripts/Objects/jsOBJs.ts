@@ -91,7 +91,7 @@ export class jsOBJs {
         },
         {
             Enabled:true,
-            unl:true,
+            unl:false,
             ID:"008",
             Name:"Navy",
             Background:"FFFFFF",
@@ -102,7 +102,7 @@ export class jsOBJs {
         },
         {
             Enabled:true,
-            unl:true,
+            unl:false,
             ID:"009",
             Name:"Retro",
             Background:"EAE2B7",
@@ -113,7 +113,7 @@ export class jsOBJs {
         },
         {
             Enabled:true,
-            unl:true,
+            unl:false,
             ID:"010",
             Name:"Beach",
             Background:"F0F3BD",
@@ -132,7 +132,30 @@ export class jsOBJs {
             Secondary:"424144",
             Tertiary:"ABAAAA",
             Quatrenary:"DDDDDD",
+        },
+        {
+            Enabled:true,
+            unl:false,
+            ID:"012",
+            Name:"Lapis",
+            Background:"03256C",
+            Primary:"FFFFFF",
+            Secondary:"06BEE1",
+            Tertiary:"1768AC",
+            Quatrenary:"2541B2",
+        },
+        {
+            Enabled:true,
+            unl:false,
+            ID:"013",
+            Name:"Autumn",
+            Background:"DDCA7D",
+            Primary:"242331",
+            Secondary:"533E2D",
+            Tertiary:"A27035",
+            Quatrenary:"B88B4A",
         }
+
     ]}
 
 

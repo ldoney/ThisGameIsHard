@@ -78,7 +78,7 @@ export default class PaletteController extends cc.Component {
     {
             var disp = event.target;
             var ID = disp.name;
-            if(this.lastTouch == ID) {
+            if(true || this.lastTouch == ID) {
                 var elem = Helpers.schemeList.List.filter(e => e.ID === ID)[0];
                 if (elem.Enabled && Helpers.schemeList.List.filter(e => e.unl && e.Enabled).length > 1)
                 {

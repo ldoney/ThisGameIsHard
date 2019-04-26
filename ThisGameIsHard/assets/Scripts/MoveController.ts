@@ -30,12 +30,11 @@ export default class MoveController extends cc.Component {
             var ball = this.node.parent.getChildByName("Ball");
             var distX = this.node.x - ball.x;
             var distY = this.node.y - ball.y;
-        
-            var angle = Math.atan2(this.node.x -ball.x,
-                this.node.y - ball.y) * (180 / Math.PI);
-            this.node.setRotation(
-                angle
-            );
+                var angle = Math.atan2(distX,
+                    distY) * (180 / Math.PI);
+                this.node.setRotation(
+                    angle
+                );
         }
     }
 }

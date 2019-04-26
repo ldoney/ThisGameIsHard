@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.596875,
-      "y": 0.596875,
+      "x": 0.5953125,
+      "y": 0.5953125,
       "z": 1
     },
     "_quat": {
@@ -777,8 +777,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 249.67,
-      "height": 80
+      "width": 218.48,
+      "height": 120
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -820,8 +820,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_string": "You have no \nloot boxes :(",
-    "_N$string": "You have no \nloot boxes :(",
+    "_string": "Get More\nloot boxes\nBy playing!",
+    "_N$string": "Get More\nloot boxes\nBy playing!",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
