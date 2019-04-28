@@ -6,6 +6,7 @@ export class Helpers {
     static skins      = jsOBJs.skins;
     static user       = jsOBJs.user;
     static scheme:ColorScheme = null;
+    static songPos    = 0;
     static toHex(col)
     {
         return col.toHEX(col);
@@ -36,6 +37,29 @@ export class Helpers {
     {
         this.scheme = new ColorScheme();
         this.randomizeScheme();
+    }
+    static updateMusicTime(canvas:cc.Node)
+    {
+        if(canvas.getComponent(cc.AudioSource) != null)
+        {
+            Helpers.songPos = canvas.getComponent(cc.AudioSource).getCurrentTime();
+        }
+    }
+    static setUpSounds(canvas:cc.Node)
+    {
+        Helpers.updateSongTime(canvas);
+        Helpers.setAllVolume(canvas);
+    }
+    static updateSongTime(canvas:cc.Node)
+    {
+        this.changeSongTimeTo(this.songPos, canvas);
+    }
+    static changeSongTimeTo(value:number, canvas:cc.Node)
+    {
+        if(canvas.getComponent(cc.AudioSource) != null)
+        {
+            canvas.getComponent(cc.AudioSource).setCurrentTime(value);
+        }
     }
     static setUpSkinDB()
     {
@@ -82,8 +106,7 @@ export class Helpers {
         return false;
     }
     static setUpSkins()
-    {
-        
+    { 
         if(localStorage.getItem("skins") != null)
         {
             this.skins = JSON.parse(localStorage.getItem("skins"));
@@ -152,11 +175,53 @@ export class Helpers {
             }
         });
     }
+    static setAllVolume(canvas:cc.Node)
+    {
+        var elems = canvas.getComponentsInChildren(cc.AudioSource);
+        if(canvas.getComponent(cc.AudioSource) != null)
+        {
+            canvas.getComponent(cc.AudioSource).volume = Helpers.user.sound;
+        }
+        for(var i = 0; i < elems.length; i++)
+        {
+            elems[i].volume = Helpers.user.sound;
+        }
+    }
+    static turnOffSound(canvas:cc.Node)
+    {
+        var elems = canvas.getComponentsInChildren(cc.AudioSource);
+        if(canvas.getComponent(cc.AudioSource) != null)
+        {
+            canvas.getComponent(cc.AudioSource).volume = Helpers.user.sound;
+        }
+        for(var i = 0; i < elems.length; i++)
+        {
+            elems[i].volume = 0;
+        }
+        Helpers.user.sound = 0;
+        Helpers.updatePlayer();
+    }
+    static turnOnSound(n:number, canvas:cc.Node)
+    {
+        var elems = canvas.getComponentsInChildren(cc.AudioSource);
+        if(canvas.getComponent(cc.AudioSource) != null)
+        {
+            canvas.getComponent(cc.AudioSource).volume = Helpers.user.sound;
+        }
+        for(var i = 0; i < elems.length; i++)
+        {
+            elems[i].volume = n;
+        }
+        Helpers.user.sound = n;
+        Helpers.updatePlayer();
+    }
     static switchScenes(scene:string, node:cc.Node)
     {
+        
         node.runAction(cc.sequence( 
             cc.fadeOut(0.25), 
             cc.callFunc(function () {
+                Helpers.updateMusicTime(node);
                 cc.director.loadScene(scene);
             })
         )); 

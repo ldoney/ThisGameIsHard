@@ -8,6 +8,7 @@ export default class LootBoxes extends cc.Component {
         this.node.getChildByName("Back").on('touchstart', function() { Helpers.switchScenes("PaletteEdit",this.node)}, this);    
         this.node.getChildByName("Count").getComponent(cc.Label).string = "x" + Helpers.user.LootBoxes;
         var list = Helpers.schemeList.List.filter(e => e.unl == false);
+        Helpers.setUpSounds(this.node);
         if(list.length <= 0)
         {
             this.node.getChildByName("Box").runAction(cc.fadeOut(1));

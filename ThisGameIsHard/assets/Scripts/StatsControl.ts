@@ -4,6 +4,7 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class TutorialControl extends cc.Component {
     start () {
+        Helpers.setUpSounds(this.node);
         if(localStorage.getItem("userData") != null)
         {
             Helpers.user = JSON.parse(localStorage.getItem("userData"));

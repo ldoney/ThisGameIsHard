@@ -8,5 +8,7 @@ export default class TutorialControl extends cc.Component {
     start () {
         Helpers.scheme.loadColors(this.node);
         this.node.getChildByName("Back").on('touchstart', function() { Helpers.switchScenes("Settings",this.node)}, this)
+        Helpers.setUpSounds(this.node);
+
     }
 }

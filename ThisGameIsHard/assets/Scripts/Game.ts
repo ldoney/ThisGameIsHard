@@ -35,7 +35,7 @@ export default class Game extends cc.Component {
         this.inSession = true;
         this.sessionTimer = 0.00;
         this.node.getChildByName("Menu").on('touchstart', function() {
-            if(!this.inSession){Helpers.returnToMenu(this.node)}}, this);
+            if(!this.inSession){cc.director.loadScene("MainMenu")}}, this);
         this.node.getChildByName("Pause").on('touchstart', this.onPauseTouchEvent, this);
         this.getBallRepAsSF(this.node.getChildByName("Ball").getComponent(cc.Sprite), Helpers.skins.CurBall);
         this.node.getChildByName("CoinCnt").getComponent(cc.Label).string = "$"+Helpers.user.Coins;

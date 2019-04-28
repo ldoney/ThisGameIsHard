@@ -7,6 +7,7 @@ export default class CustomizeScript extends cc.Component {
     @property
     gap:number = 55;
     start () {
+        Helpers.setUpSounds(this.node);
         this.node.getChildByName("CurMon").getComponent(cc.Label).string = "Bank: $" + Helpers.user.Coins;
         this.changeBtnDisp();
         this.node.getChildByName("Back").on('touchstart', function() { Helpers.returnToMenu(this.node)}, this);  

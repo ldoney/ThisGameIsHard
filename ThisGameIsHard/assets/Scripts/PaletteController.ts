@@ -15,6 +15,8 @@ export default class PaletteController extends cc.Component {
         this.node.getChildByName("Back").on('touchstart', function() { Helpers.returnToMenu(this.node)}, this);
         this.node.getChildByName("LootBox").on('touchstart', function() { Helpers.switchScenes("LootBox",this.node)}, this);
         this.window = this.node.getChildByName("ItemsView").getChildByName("view").getChildByName("content");
+        Helpers.setUpSounds(this.node);
+
         var list = Helpers.schemeList.List;
         var curh = this.hstart;
         for(var i = 0; i < list.length; i++)

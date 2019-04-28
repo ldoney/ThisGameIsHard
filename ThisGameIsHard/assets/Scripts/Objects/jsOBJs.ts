@@ -174,6 +174,7 @@ export class jsOBJs {
         NetWorth:0,
         TotalTime:0,
         LootBoxes:0,
+        sound: 1,
         AllTimes:[
             
         ],
