@@ -52,8 +52,11 @@ export default class MainMenu extends cc.Component {
     start () {
         this.node.getChildByName("HighScore").getComponent(cc.Label).string = "" + Helpers.user.HighScore.toFixed(1);
         this.node.getChildByName("Coins").getComponent(cc.Label).string = "$" + Helpers.user.Coins;
+        if(cc.sys.isMobile)
+        {
+            sdkbox.PluginAdMob.show("home");
+        }
         Helpers.setUpSounds(this.node);
-
         if(Helpers.user.LootBoxes > 0)
         {
             this.node.getChildByName("Notification").opacity = 255;

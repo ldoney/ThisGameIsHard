@@ -217,7 +217,10 @@ export class Helpers {
     }
     static switchScenes(scene:string, node:cc.Node)
     {
-        
+        if(cc.sys.isMobile)
+        {
+            sdkbox.PluginAdMob.show("gameover");
+        }
         node.runAction(cc.sequence( 
             cc.fadeOut(0.25), 
             cc.callFunc(function () {

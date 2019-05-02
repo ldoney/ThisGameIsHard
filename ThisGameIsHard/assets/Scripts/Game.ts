@@ -40,6 +40,7 @@ export default class Game extends cc.Component {
         this.getBallRepAsSF(this.node.getChildByName("Ball").getComponent(cc.Sprite), Helpers.skins.CurBall);
         this.node.getChildByName("CoinCnt").getComponent(cc.Label).string = "$"+Helpers.user.Coins;
         Helpers.scheme.loadColors(this.node);
+        Helpers.setAllVolume(this.node);
     }
     onPauseTouchEvent(e)
     {
@@ -130,7 +131,14 @@ export default class Game extends cc.Component {
         "<color=#" + Helpers.scheme.toHex(Helpers.scheme.curScheme.Secondary) + ">Game Over</color>";
         Helpers.randomizeScheme();
         localStorage.setItem("lastScheme", (Math.floor(Math.random() * ColorScheme.numSchemes)) + "");
-        
+        if(cc.sys.isMobile)
+        {
+            var rand = ((Math.random() * 100) + 1);
+            if(rand < 10)
+            {
+                sdkbox.PluginAdMob.show("gameover");
+            }
+        }
         Helpers.user.Count = Helpers.user.Count + 1;
         Helpers.user.TotalTime = Helpers.user.TotalTime + this.sessionTimer;
         Helpers.user.AllTimes.push(this.sessionTimer);

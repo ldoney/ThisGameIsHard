@@ -17,7 +17,7 @@ export default class LoadingScreenScript extends cc.Component {
                             "Minecraft > Fortnite",
                             "Loot boxes are rather rare!",
                             "The best skin is the Soccer Ball\nChange my mind",
-                            "This loading screen is quite a challenge",
+                            "This loading screen is\nquite a challenge",
                             "Purple Cow Men!",
                             "Yes. There are no settings.",
                             "There is a tutorial in the\nsettings menu",
@@ -27,6 +27,12 @@ export default class LoadingScreenScript extends cc.Component {
         this.node.getChildByName("Loading").runAction(cc.repeatForever(cc.rotateBy(1,360)));
         this.node.getChildByName("LogoWhite").runAction(cc.fadeIn(2));
         Helpers.checkForDBUpdates();
+        if(cc.sys.isMobile)
+        {
+            sdkbox.PluginAdMob.init();
+            sdkbox.PluginAdMob.cache("home");
+            sdkbox.PluginAdMob.cache("gameover");
+        }
         
         Helpers.setUpAll();
         cc.director.preloadScene("MainMenu");

@@ -40,7 +40,7 @@ export default class BallControl extends cc.Component {
                 }
                 if(distY < 0)
                 {
-                    distY = -50;
+                    distY = -50;    
                 }else
                 {
                     distY = 50;

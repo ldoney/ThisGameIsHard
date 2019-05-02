@@ -35,7 +35,6 @@ export default class CustomizeScript extends cc.Component {
                 txtnod.addComponent(cc.Label);
                 var text = txtnod.getComponent(cc.Label);
                 text.string = "$" + balls[i].cost;
-                text.font = this.node.getChildByName("Title_1").getComponent(cc.Label).font;
                 text.fontSize = 10;
                 txtnod.setPosition(wind, hind - 35);
                 txtnod.group = this.node.getChildByName("Title_1").group;
