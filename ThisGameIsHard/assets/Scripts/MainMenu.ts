@@ -1,4 +1,5 @@
 import { Helpers } from "./Objects/Helpers";
+import { Context } from "./Objects/Context";
 
 const {ccclass, property} = cc._decorator;
 
@@ -54,7 +55,7 @@ export default class MainMenu extends cc.Component {
         this.node.getChildByName("Coins").getComponent(cc.Label).string = "$" + Helpers.user.Coins;
         if(cc.sys.isMobile)
         {
-            sdkbox.PluginAdMob.show("home");
+            Context.showAd("home");
         }
         Helpers.setUpSounds(this.node);
         if(Helpers.user.LootBoxes > 0)

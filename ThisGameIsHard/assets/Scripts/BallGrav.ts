@@ -33,17 +33,17 @@ export default class BallControl extends cc.Component {
             {
                 if(distX < 0)
                 {
-                    distX = -50;
+                    distX = -80;
                 }else
                 {
-                    distX = 50;
+                    distX = 80;
                 }
                 if(distY < 0)
                 {
-                    distY = -50;    
+                    distY = -80;    
                 }else
                 {
-                    distY = 50;
+                    distY = 80;
                 }    
             }
             var nodeAction = cc.moveBy( this.Multiplier, cc.v2( distX, distY ) );

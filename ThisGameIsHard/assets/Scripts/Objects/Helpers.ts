@@ -219,7 +219,7 @@ export class Helpers {
     {
         if(cc.sys.isMobile)
         {
-            sdkbox.PluginAdMob.show("gameover");
+            sdkbox.PluginAdMob.hide("home");
         }
         node.runAction(cc.sequence( 
             cc.fadeOut(0.25), 

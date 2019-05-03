@@ -2,15 +2,10 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class MoveController extends cc.Component {
-
-    // LIFE-CYCLE CALLBACKS:
     onLoad () {
         this.node.parent.on('touchmove', this.onDeviceTouchEvent, this);
         this.node.on("touchstart", this.onDeviceTouchEvent, this);
         this.node.on("touchend", this.onDeviceTouchEvent, this);
-    }
-
-    start () {
     }
     onDeviceTouchEvent(touch, event)
     {

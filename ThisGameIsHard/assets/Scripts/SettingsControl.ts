@@ -1,5 +1,5 @@
 import { Helpers } from "./Objects/Helpers";
-import { Context } from "./Context";
+import { Context } from "./Objects/Context";
 
 const {ccclass, property} = cc._decorator;
 

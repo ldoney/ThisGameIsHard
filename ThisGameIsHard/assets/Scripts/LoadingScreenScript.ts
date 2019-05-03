@@ -1,4 +1,5 @@
 import {Helpers} from "./Objects/Helpers"
+import {Context} from "./Objects/Context"
 
 const {ccclass, property} = cc._decorator;
 
@@ -29,9 +30,7 @@ export default class LoadingScreenScript extends cc.Component {
         Helpers.checkForDBUpdates();
         if(cc.sys.isMobile)
         {
-            sdkbox.PluginAdMob.init();
-            sdkbox.PluginAdMob.cache("home");
-            sdkbox.PluginAdMob.cache("gameover");
+            Context.setupAds();
         }
         
         Helpers.setUpAll();

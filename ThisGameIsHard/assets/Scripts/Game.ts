@@ -134,7 +134,7 @@ export default class Game extends cc.Component {
         if(cc.sys.isMobile)
         {
             var rand = ((Math.random() * 100) + 1);
-            if(rand < 10)
+            if(rand < 5)
             {
                 sdkbox.PluginAdMob.show("gameover");
             }
