@@ -9,7 +9,7 @@ export default class LoadingScreenScript extends cc.Component {
                             "Have a great day!",
                             "Be careful- This game is hard",
                             "You may want to make sure there\nare no sharp objects nearby...",
-                            "This game is still in working!",
+                            "This game is still in beta!",
                             "Try to do the things that you're\nincapable of",
                             "Try to balance your speed!",
                             "Created by Lincoln Doney",
@@ -23,7 +23,13 @@ export default class LoadingScreenScript extends cc.Component {
                             "Yes. There are no settings.",
                             "There is a tutorial in the\nsettings menu",
                             "Modes are coming soon!",
-                            "My high score is 69.58s, can\nyou beat it?"];
+                            "My high score is 69.58s, can\nyou beat it?",
+                            "I have a minecraft girlfriend",
+                            "How many shrimp can you eat\nuntil you make your skin turn pink?",
+                            "I hate Evan Hartnett",
+                            "Ride em Cowboy!",
+                            "You should just give up",
+                            "Coded in Typescript!"];
     onLoad () {
         this.node.getChildByName("Loading").runAction(cc.repeatForever(cc.rotateBy(1,360)));
         this.node.getChildByName("LogoWhite").runAction(cc.fadeIn(2));
