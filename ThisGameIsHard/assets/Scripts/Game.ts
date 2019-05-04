@@ -1,5 +1,6 @@
 import {ColorScheme} from "./Objects/ColorScheme"
 import { Helpers } from "./Objects/Helpers";
+import { Context } from "./Objects/Context";
 
 const {ccclass, property} = cc._decorator;
 
@@ -134,9 +135,9 @@ export default class Game extends cc.Component {
         if(cc.sys.isMobile)
         {
             var rand = ((Math.random() * 100) + 1);
-            if(rand < 5)
+            if(rand < 10)
             {
-                sdkbox.PluginAdMob.show("gameover");
+                Context.showAd("gameover");
             }
         }
         Helpers.user.Count = Helpers.user.Count + 1;

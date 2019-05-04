@@ -13,7 +13,7 @@ export default class SettingsControl extends cc.Component {
         this.node.getChildByName("Back").on('touchstart', function() { Helpers.returnToMenu(this.node)}, this)
         this.node.getChildByName("Help").on('touchstart', function() { Helpers.switchScenes("Tutorial",this.node)}, this)
         this.node.getChildByName("Reset").on('touchstart', this.reset, this);
-
+        this.node.getChildByName("PPolicy").on('touchstart', function() { Helpers.switchScenes("PrivacyPolicy",this.node)}, this)
     }
     reset()
     {
