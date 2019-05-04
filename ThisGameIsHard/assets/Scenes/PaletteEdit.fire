@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.30602450621559474,
-      "y": 0.30602450621559474,
+      "x": 0.9140380859375,
+      "y": 0.9140380859375,
       "z": 1
     },
     "_quat": {
@@ -110,7 +110,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 960,
+      "width": 380,
       "height": 640
     },
     "_anchorPoint": {
@@ -120,7 +120,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 480,
+      "x": 190,
       "y": 320,
       "z": 0
     },
@@ -186,8 +186,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 4.34,
-      "y": 2.88,
+      "x": 10,
+      "y": 10,
       "z": 1
     },
     "_rotationX": 0,
@@ -1049,8 +1049,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_string": "These Palettes are...\nActually rather easy?",
-    "_N$string": "These Palettes are...\nActually rather easy?",
+    "_string": "These Themes are...\nActually rather easy?",
+    "_N$string": "These Themes are...\nActually rather easy?",
     "_fontSize": 24.999999999999936,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -1165,10 +1165,10 @@
     "_enabled": true,
     "_designResolution": {
       "__type__": "cc.Size",
-      "width": 960,
+      "width": 380,
       "height": 640
     },
-    "_fitWidth": false,
+    "_fitWidth": true,
     "_fitHeight": true,
     "_id": "68qtLkwepNpZSZBCl+Dgf1"
   },

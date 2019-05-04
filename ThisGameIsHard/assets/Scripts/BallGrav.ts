@@ -1,3 +1,5 @@
+import { Helpers } from "./Objects/Helpers";
+
 const {ccclass, property} = cc._decorator;
 
 @ccclass
@@ -47,7 +49,6 @@ export default class BallControl extends cc.Component {
                 }    
             }
             var nodeAction = cc.moveBy( this.Multiplier, cc.v2( distX, distY ) );
-            
             this.node.rotation = this.RotateMult * ((this.node.rotationX) -= (dt * distZ));
             this.node.runAction(nodeAction);            
         }

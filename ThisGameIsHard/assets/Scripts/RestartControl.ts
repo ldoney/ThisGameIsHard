@@ -12,11 +12,11 @@ export default class RestartControl extends cc.Component {
         if(this.Resume)
         {
             cc.log("Resume");
-            this.node.parent.getComponent("Game").unpause();
+            this.node.parent.parent.getComponent("Game").unpause();
         }else
         {
             cc.log("Restart");
-            this.node.parent.getComponent("Game").restart();
+            this.node.parent.parent.getComponent("Game").restart();
         }
     }
     switchModes(i)
