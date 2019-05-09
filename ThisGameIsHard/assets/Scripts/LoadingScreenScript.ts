@@ -38,6 +38,7 @@ export default class LoadingScreenScript extends cc.Component {
         if(cc.sys.isMobile)
         {
             Context.setupAds();
+            //Context.setupPlay();
         }
         
         

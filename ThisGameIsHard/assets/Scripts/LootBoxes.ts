@@ -4,6 +4,7 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class LootBoxes extends cc.Component {
     count:number = 0;
+    touchable:boolean = true;
     start () {
         this.node.getChildByName("Back").on('touchstart', function() { Helpers.switchScenes("PaletteEdit",this.node)}, this);    
         this.node.getChildByName("Count").getComponent(cc.Label).string = "x" + Helpers.user.LootBoxes;
@@ -14,6 +15,10 @@ export default class LootBoxes extends cc.Component {
             this.node.getChildByName("Box").runAction(cc.fadeOut(1));
             this.node.getChildByName("ErrMsg").getComponent(cc.Label).string = "You have all\nthe schemes!";
             this.node.getChildByName("ErrMsg").runAction(cc.fadeIn(1));
+            if(Helpers.user.LootBoxes > 0)
+            {
+                this.setupExchange();
+            }
             this.node.getChildByName("Count").opacity = 0;
         }else{
             var Box = this.node.getChildByName("Box");
@@ -21,6 +26,35 @@ export default class LootBoxes extends cc.Component {
             this.shake();
         }
         this.count = 0;
+    }
+    setupExchange()
+    {
+        this.node.getChildByName("Exchange").runAction(cc.fadeIn(1));
+        this.node.getChildByName("Exchange").getChildByName("Count").getComponent(cc.Label).string = "x" + Helpers.user.LootBoxes;
+        this.node.getChildByName("Exchange").getChildByName("Button").on("touchstart", function(){
+            if(this.touchable)
+            {
+                Helpers.exchangeBox();
+                this.node.getChildByName("Exchange").getChildByName("Count").getComponent(cc.Label).string = "x" + Helpers.user.LootBoxes;
+                if(Helpers.user.LootBoxes <= 0)
+                {
+                    this.touchable = false;
+                }
+                var FlimLam = this.node.getChildByName("CoinFlimLam");
+                FlimLam.runAction(cc.sequence(
+                    cc.fadeIn(0.25),
+                    cc.moveBy(0.5,cc.v2(0, 50)),
+                    cc.fadeOut(0.5),
+                    cc.moveBy(0.0000000000000001, cc.v2(0,-50)),                    
+                ));                    
+                if(Helpers.user.LootBoxes <= 0)
+                {
+                    this.node.getChildByName("Exchange")
+                    .runAction(cc.fadeOut(0.25));
+                }
+            }                
+            }
+        , this);
     }
     shake()
     {
@@ -60,8 +94,14 @@ export default class LootBoxes extends cc.Component {
         }else if(list.length <= 0)
         {
             this.node.getChildByName("Box").runAction(cc.fadeOut(1));
-            this.node.getChildByName("ErrMsg").getComponent(cc.Label).string = "You have all the schemes!";
+            this.node.getChildByName("ErrMsg").getComponent(cc.Label).string = "You have all\nthe schemes!";
             this.node.getChildByName("ErrMsg").runAction(cc.fadeIn(1));
+            if(Helpers.user.LootBoxes > 0)
+            {
+                this.node.getChildByName("Count").runAction(cc.fadeOut(0.25));
+                this.node.getChildByName("NewDisp").runAction(cc.fadeOut(0.25));
+                this.setupExchange();
+            }
         }
     }
     choose()
@@ -107,7 +147,7 @@ export default class LootBoxes extends cc.Component {
         nod.setPosition(0, -200);
         nod.setScale(0.11, 0.11);
 
-        this.node.addChild(nod);
+        this.node.getChildByName("NewDisp").addChild(nod);
         nod.runAction(cc.sequence(
             cc.spawn(
                 cc.fadeIn(0.25),

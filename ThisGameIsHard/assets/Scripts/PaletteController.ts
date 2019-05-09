@@ -44,7 +44,7 @@ export default class PaletteController extends cc.Component {
             var sprite = statusNode.getComponent(cc.Sprite);
             Helpers.setFrame(sprite, "Sprites/Xmark");   
             statusNode.opacity = 0;
-            statusNode.setScale(0.44,0.44);
+            statusNode.setScale(0.40,0.48);
             statusNode.color = Helpers.fromHex(scheme.Tertiary);
             statusNode.name = "Xmark";
             nod.addChild(statusNode);

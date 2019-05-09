@@ -7,6 +7,15 @@ export class Helpers {
     static user       = jsOBJs.user;
     static scheme:ColorScheme = null;
     static songPos    = 0;
+    static exchangeBox()
+    {
+        if(Helpers.user.LootBoxes > 0)
+        {
+            Helpers.user.LootBoxes--;
+            Helpers.user.Coins += 30;
+            Helpers.updatePlayer();
+        }
+    }
     static toHex(col)
     {
         return col.toHEX(col);
@@ -96,7 +105,10 @@ export class Helpers {
     static getLootbox(time:number)
     {
         var rand = ((Math.random() * 100) + 1);
-        if((time > 100 && rand <= 25) || 
+        if((time > 1000 && rand <= 100) ||
+           (time > 500 && rand <= 99) ||
+           (time > 200 && rand <= 50) ||
+           (time > 100 && rand <= 25) || 
            (time > 50 && rand <= 15)  ||
            (time > 25 && rand <= 10)  ||
            (time > 10 && rand <= 1))

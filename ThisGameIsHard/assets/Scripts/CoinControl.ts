@@ -24,12 +24,11 @@ export default class CoinControl extends cc.Component {
     currentTime:number = this.maxTime;
     
     onLoad () {
-        this.spawnCoin();
         cc.director.getCollisionManager().enabled = true;
-    
-       this.node.addComponent(cc.CircleCollider);
-       this.node.getComponent(cc.CircleCollider).radius = this.node.width/2;
-       this.node.getComponent(cc.CircleCollider).enabled = true;
+        this.spawnCoin();
+        this.node.addComponent(cc.CircleCollider);
+        this.node.getComponent(cc.CircleCollider).radius = this.node.width/2;
+        this.node.getComponent(cc.CircleCollider).enabled = true;
     }
     onCollisionStay(other)
     {
@@ -48,6 +47,7 @@ export default class CoinControl extends cc.Component {
     {
         this.onCollisionStay(other);
     }
+    firstSpawn:boolean = true;
     canCollect:boolean = true;
     spawnCoin() {
         var canvas = this.node.getParent();
@@ -69,9 +69,15 @@ export default class CoinControl extends cc.Component {
                                   Helpers.getRndInt(-(height) + this.padBottom, (height) - this.padTop));
 
             this.currentTime = this.maxTime;
-        }while((Helpers.getDistance(this.node, this.node.parent.getChildByName("Ball")) < this.node.parent.getChildByName("Ball").width * 3
-        && this.node.parent.getComponent("Game").inSession))
+        }while((Helpers.getDistance(this.node, this.node.parent.getChildByName("Ball")) < this.node.parent.getChildByName("Ball").width * 2.5
+        && (this.node.parent.getComponent("Game").inSession || this.firstSpawn)))
+        this.firstSpawn = false;
         this.node.opacity = 255;
+        this.node.setRotation(0);
+        this.node.runAction(
+            cc.repeatForever(
+                cc.rotateBy(5,360))
+            );
         this.canCollect = true;
     }
     update (dt: number) {

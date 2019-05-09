@@ -20,7 +20,7 @@ export default class MainMenu extends cc.Component {
         this.node.getChildByName("Stats").on('touchstart', function() { Helpers.switchScenes("Stats",this.node)}, this)
         this.node.getChildByName("Settings").on('touchstart', function() { Helpers.switchScenes("Settings",this.node)}, this)
         this.node.getChildByName("Customize").on('touchstart', function() { Helpers.switchScenes("Shop",this.node)}, this)
-        this.node.getChildByName("Play").on('touchstart', function() { Helpers.switchScenes("PlayScene",this.node)}, this)
+        this.node.getChildByName("Play").on('touchstart', function() { Helpers.switchScenes("Classic",this.node)}, this)
         this.node.getChildByName("Change").on('touchstart', this.change, this)
         this.node.getChildByName("Palette").on('touchstart', function() { Helpers.switchScenes("PaletteEdit",this.node)}, this)
         this.node.getChildByName("Sound").on('touchstart', this.controlSound, this);    

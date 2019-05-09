@@ -30,6 +30,7 @@ export default class CustomizeScript extends cc.Component {
             }else
             {
                 nod.group = this.node.getChildByName("Title_1").group;
+                nod.opacity = 150;
                 var txtnod = new cc.Node();
                 txtnod.name = "PRICE_"+balls[i].ID;
                 txtnod.addComponent(cc.Label);
@@ -79,6 +80,7 @@ export default class CustomizeScript extends cc.Component {
                 if(this.unlockSkin(id))
                 {
                     window.getChildByName(id).group = this.node.getChildByName("BallBtn").group;
+                    window.getChildByName(id).opacity = 150;
                     window.removeChild(window.getChildByName("PRICE_"+id));
                     Helpers.scheme.loadColors(this.node.getChildByName("ItemsView").getChildByName("view").getChildByName("content"));
                 }

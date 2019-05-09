@@ -17,7 +17,7 @@ export default class Game extends cc.Component {
     {
         cc.loader.loadRes("Balls/"+id, function (err, res) {
             if(!err)
-            {
+            {  
                 cc.log("Resource Loaded!")
                 sprite.spriteFrame = new cc.SpriteFrame(res);
             }else
@@ -42,6 +42,7 @@ export default class Game extends cc.Component {
         this.getEndGame().getChildByName("CoinCnt").getComponent(cc.Label).string = "$"+Helpers.user.Coins;
         Helpers.scheme.loadColors(this.node);
         Helpers.scheme.loadColors(this.getEndGame());
+        Helpers.scheme.loadColors(this.getEndGame().getChildByName("Box"));
         Helpers.setAllVolume(this.node);
     }
     onPauseTouchEvent(e)
@@ -139,16 +140,37 @@ export default class Game extends cc.Component {
                 Context.showAd("gameover");
             }
         }
+        if(cc.sys.isMobile)
+        {
+            Context.uploadPlayer();
+        }
         Helpers.user.Count = Helpers.user.Count + 1;
         Helpers.user.TotalTime = Helpers.user.TotalTime + this.sessionTimer;
         Helpers.user.AllTimes.push(this.sessionTimer);
         if(Helpers.getLootbox(this.sessionTimer))
         {
             Helpers.user.LootBoxes++;
-            this.getEndGame().getChildByName("Plus").runAction(cc.fadeIn(0.25));
+            this.getEndGame().getChildByName("Box").runAction(
+                cc.repeatForever(
+                    cc.sequence(
+                        cc.scaleTo(0.5, 0.72),
+                        cc.scaleTo(0.5, 0.18),
+                    )
+                )        
+            );
+        }
+        if(Helpers.user.LootBoxes > 0)
+        {
+            this.getEndGame().getChildByName("Box").getChildByName("Text").getComponent(cc.Label).string = "x" + Helpers.user.LootBoxes;
             this.getEndGame().getChildByName("Box").runAction(cc.fadeIn(0.25));
+            this.getEndGame().getChildByName("Box").on('touchstart', 
+                function(){Helpers.switchScenes("LootBox",this.getEndGame().getChildByName("Box"))}, this);            
         }
         Helpers.updatePlayer();
+        if(cc.sys.isMobile && this.isHigh)
+        {
+            Context.uploadTime(Helpers.user.HighScore);   
+        }
         var Resume = this.getEndGame().getChildByName("Resume");
         Resume.getComponent("RestartControl").switchModes(0);
         Resume.runAction(cc.fadeIn(0.25));
@@ -160,9 +182,9 @@ export default class Game extends cc.Component {
     restart()
     {
         Helpers.updatePlayer();
-        cc.director.loadScene("PlayScene");
+        cc.director.loadScene("Classic");
     }
-
+    isHigh:boolean = false;
     update (dt) {
         if(this.inSession)
         {
@@ -174,6 +196,7 @@ export default class Game extends cc.Component {
             if(this.sessionTimer > Helpers.user.HighScore)
             {
                 Helpers.user.HighScore = this.sessionTimer;                
+                this.isHigh = true;
             }
         }
     }
