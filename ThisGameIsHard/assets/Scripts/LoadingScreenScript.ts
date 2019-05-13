@@ -29,7 +29,8 @@ export default class LoadingScreenScript extends cc.Component {
                             "I hate Evan Hartnett",
                             "Ride em Cowboy!",
                             "You should just give up",
-                            "Coded in Typescript!"];
+                            "Coded in Typescript!",
+                            "The ball accelerates faster\nwhen you're further away!"];
     onLoad () {
         this.node.getChildByName("Loading").runAction(cc.repeatForever(cc.rotateBy(1,360)));
         this.node.getChildByName("LogoWhite").runAction(cc.fadeIn(2));
@@ -37,8 +38,12 @@ export default class LoadingScreenScript extends cc.Component {
         Helpers.setUpAll();
         if(cc.sys.isMobile)
         {
-            Context.setupAds();
+            //Context.setupAds();
             //Context.setupPlay();
+            //Context.signin();
+            //Context.loadData();
+            //advice.getComponent(cc.Label).string = sdkbox.PluginSdkboxPlay.getPlayerId();
+
         }
         
         

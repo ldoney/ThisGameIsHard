@@ -9,8 +9,27 @@ export class Context {
             sdkbox.PluginAdMob.cache(adName);
         }
     }
-
-
+    static signin()
+    {
+        if (sdkbox.PluginSdkboxPlay.isSignedIn()) {
+            sdkbox.PluginSdkboxPlay.signout();
+        } else {
+            sdkbox.PluginSdkboxPlay.signin(true);
+        }
+    }
+    static saveData(database:string, data:object)
+    {
+        if (sdkbox.PluginSdkboxPlay.isSignedIn()) {
+            sdkbox.PluginSdkboxPlay.saveGameDataBinary(database,data, JSON.stringify(data).length);
+        }
+    }
+    static loadData()
+    {
+        if(sdkbox.PluginSdkboxPlay.isSignedIn())
+        {
+            sdkbox.PluginSdkboxPlay.loadAllGameData();
+        }
+    }
     static setupPlay()
     {
         if ('undefined' == typeof sdkbox) {
@@ -117,14 +136,8 @@ export class Context {
             }
         });
         sdkbox.PluginSdkboxPlay.init();
-        if(sdkbox.PluginSdkboxPlay.isSignedIn())
-        {
-            sdkbox.PluginSdkboxPlay.loadAllGameData();
-        }else
-        {
-            sdkbox.PluginSdkboxPlay.signin(true);
-        }
     }
+    
     static uploadPlayer()
     {
         sdkbox.PluginSdkboxPlay.saveGameDataBinary("user", Helpers.user, 50);

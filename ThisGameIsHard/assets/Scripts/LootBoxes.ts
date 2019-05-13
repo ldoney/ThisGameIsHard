@@ -30,12 +30,14 @@ export default class LootBoxes extends cc.Component {
     setupExchange()
     {
         this.node.getChildByName("Exchange").runAction(cc.fadeIn(1));
-        this.node.getChildByName("Exchange").getChildByName("Count").getComponent(cc.Label).string = "x" + Helpers.user.LootBoxes;
+        this.node.getChildByName("Exchange").getChildByName("CountL").getComponent(cc.Label).string = "x" + Helpers.user.LootBoxes;
+        this.node.getChildByName("Exchange").getChildByName("CountC").getComponent(cc.Label).string = "$" + Helpers.user.Coins;
         this.node.getChildByName("Exchange").getChildByName("Button").on("touchstart", function(){
             if(this.touchable)
             {
                 Helpers.exchangeBox();
-                this.node.getChildByName("Exchange").getChildByName("Count").getComponent(cc.Label).string = "x" + Helpers.user.LootBoxes;
+                this.node.getChildByName("Exchange").getChildByName("CountL").getComponent(cc.Label).string = "x" + Helpers.user.LootBoxes;
+                this.node.getChildByName("Exchange").getChildByName("CountC").getComponent(cc.Label).string = "$" + Helpers.user.Coins;
                 if(Helpers.user.LootBoxes <= 0)
                 {
                     this.touchable = false;

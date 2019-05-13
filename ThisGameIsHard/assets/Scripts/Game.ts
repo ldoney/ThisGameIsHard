@@ -8,10 +8,8 @@ const {ccclass, property} = cc._decorator;
 export default class Game extends cc.Component {
     onLoad () {
         var bar = this.node.getChildByName("progressBar");
-
+        bar.getChildByName("bar").color = Helpers.scheme.curScheme.Secondary;
         var progress = bar.getComponent(cc.ProgressBar);
-        progress.totalLength = this.node.width;
-        bar.setPosition((-(this.node.width / 2)) + bar.width / 2, 0);
     }
     getBallRepAsSF(sprite:cc.Sprite, id:string)
     {
@@ -140,10 +138,6 @@ export default class Game extends cc.Component {
                 Context.showAd("gameover");
             }
         }
-        if(cc.sys.isMobile)
-        {
-            Context.uploadPlayer();
-        }
         Helpers.user.Count = Helpers.user.Count + 1;
         Helpers.user.TotalTime = Helpers.user.TotalTime + this.sessionTimer;
         Helpers.user.AllTimes.push(this.sessionTimer);
@@ -167,10 +161,6 @@ export default class Game extends cc.Component {
                 function(){Helpers.switchScenes("LootBox",this.getEndGame().getChildByName("Box"))}, this);            
         }
         Helpers.updatePlayer();
-        if(cc.sys.isMobile && this.isHigh)
-        {
-            Context.uploadTime(Helpers.user.HighScore);   
-        }
         var Resume = this.getEndGame().getChildByName("Resume");
         Resume.getComponent("RestartControl").switchModes(0);
         Resume.runAction(cc.fadeIn(0.25));

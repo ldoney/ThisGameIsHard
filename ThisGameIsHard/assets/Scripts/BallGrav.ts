@@ -6,7 +6,7 @@ const {ccclass, property} = cc._decorator;
 export default class BallControl extends cc.Component {
 
     @property
-    Multiplier: number = 60;
+    Multiplier: number = 100;
     @property
     RotateMult:number  = 1.0;
 
@@ -31,7 +31,7 @@ export default class BallControl extends cc.Component {
             var distX = this.node.x - magnet.x;
             var distY = this.node.y - magnet.y;
             var distZ = Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));
-            if(distZ < 10)
+            if(distZ < 40)
             {
                 if(distX < 0)
                 {
